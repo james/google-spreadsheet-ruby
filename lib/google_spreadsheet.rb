@@ -296,6 +296,18 @@ module GoogleSpreadsheet
           reload() if !@cells
           return @cells.keys.map(){ |r, c| c }.max || 0
         end
+
+        def rows
+          rows_array = []
+          num_rows.times do |row_number|
+            row_array = []
+            num_cols.times do |col_number|
+              row_array << self[row_number, col_number]
+            end
+            rows_array << row_array
+          end
+          rows_array
+        end
         
         def cells #:nodoc:
           reload() if !@cells
